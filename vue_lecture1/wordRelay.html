@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>끝말잇기</h1>
+        <form @submit="onSubmitForm">
+            <h2>{{prev_word}}</h2>
+            <input ref="word" v-model="answer" type="text">
+            <button type="submit"> 제출 </button>
+            <div v-if="result!=''">{{result}}</div>
+        </form>
+
+    </div>
+</body>
+<script>
+    var default_word = ['감자', '도시', '핸드폰', '고향'];
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            prev_word: default_word[Math.ceil(Math.random() * default_word.length) - 1],
+            answer: '',
+            result: '',
+            correct_count: 0,
+            incorrect_count: 0,
+        },
+        methods: {
+            onSubmitForm(e) {
+                e.preventDefault();
+                if (this.prev_word[this.prev_word.length - 1] === this.answer[0]) {
+                    alert('정답');
+                    this.prev_word = this.answer;
+                    this.answer = '';
+                    this.result = "굿";
+                    this.correct_count += 1;
+                    this.$refs.word.focus();
+                } else {
+                    alert('오답');
+                    this.answer = '';
+                    this.result = "땡";
+                    this.incorrect_count++;
+                    this.$refs.word.focus();
+                }
+            },
+            firstWord() {
+                prev_word = default_word[Math.ceil(Math.random() * default_word.length) - 1];
+            },
+        },
+    });
+</script>
+
+</html>

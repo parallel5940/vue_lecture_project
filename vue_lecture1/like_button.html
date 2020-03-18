@@ -1,0 +1,34 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좋아요</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div v-if="liked"> 좋아요 눌렀음</div>
+        <button v-on:click="onClickButton()">Like</button>
+        <p>좋아요 눌린 횟수: {{ like_counter }}</p>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#root',
+        data: {
+            liked: false,
+            like_counter: 0,
+        },
+        methods: {
+            onClickButton() {
+                this.liked = true;
+                this.like_counter += 1;
+            },
+        },
+    });
+</script>
+
+</html>
