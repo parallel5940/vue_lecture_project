@@ -1,11 +1,28 @@
+const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+
 module.exports = {
-    entry: {
-        app: './main.js',
+    mode: 'development',
+    devtool: 'eval',
+    resolve: {
+        extensions: ['.js', '.vue'],
     },
-    module: {},
-    plugins: [],
+    entry: {
+        //app = combined js file name
+        app: path.join(__dirname, 'main.js'),
+    },
+    module: {
+        rules: [{
+            test: /\.vue$/,
+            loader: 'vue-loader'
+        }],
+    },
+    plugins: [
+        new VueLoaderPlugin(),
+    ],
     output: {
         filename: '[name].js',
-        path: './dist',
+        path: path.join(__dirname, 'dist'),
     },
 };

@@ -36,14 +36,14 @@
             onSubmitForm(e) {
                 e.preventDefault();
                 if (this.prev_word[this.prev_word.length - 1] === this.answer[0]) {
-                    alert('정답');
+                    // alert('정답');
                     this.prev_word = this.answer;
                     this.answer = '';
                     this.result = "굿";
                     this.correct_count += 1;
                     this.$refs.word.focus();
                 } else {
-                    alert('오답');
+                    // alert('오답');
                     this.answer = '';
                     this.result = "땡";
                     this.incorrect_count++;
