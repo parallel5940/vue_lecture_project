@@ -8,19 +8,24 @@
         <button type="submit">제출</button>
         <div> </div>
     </form>
-    </div>
+    <div>{{number}}</div>
+</div>
 </template>
 
 <!-- script --> 
 <script>
-const createRandomNumber= function(){
-    return Math.ceil(Math.random()*9999);
+const createRandomNumber = function(){  
+    var number = [];
+    for(var i = 0; i<4;i++){
+        number.push(Math.ceil(Math.random()*9)-1);
+    }
+    return number;
 }
 
 export default {
     data() {
         return {
-            number:createRandomNumber(),
+            number: createRandomNumber(),
             answer:'',
             result:'',
         }
@@ -28,8 +33,12 @@ export default {
     methods:{
         onSubmitForm(e){
             e.preventDefault();
+            console.log(this)
             if(this.number === this.answer){
-                result = 'Strike';
+                this.result = 'Strike';
+            }
+            else{
+                this.result = 'Out';
             }
         },
     }
