@@ -2,9 +2,9 @@
 <template>
   <div>
     <h1>Game Started!</h1>
-    <h1>{{ result }} </h1>
-    <h3 v-if="tries">game count: {{tries}}</h3>
-    
+    <h1>{{ result }}</h1>
+    <h3 v-if="tries">game count: {{ tries }}</h3>
+
     <form @submit="onSubmitForm">
       <input ref="input" maxlength="4" type="number" v-model="answer" />
       <button type="submit">제출</button>
@@ -34,7 +34,7 @@ export default {
       answer: [],
       result: "",
       input: "",
-      tries:''
+      tries: ""
     };
   },
   methods: {
