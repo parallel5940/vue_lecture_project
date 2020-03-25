@@ -1,2 +1,4 @@
 /node_modules
-/dist
+/vue_lecture4/nodemodules
+/vue_lecture4/dist
+/vue_lecture4/package-lock.json
