@@ -3,7 +3,7 @@
     <div id="screen" :class="states" @click="onClick">{{ message }}</div>
     <div>{{ states }}</div>
     <div>
-      <div>반응시간: {{ responseTime[count] }} ms</div>
+      <div>반응시간: {{ latestResponseTime }} ms</div>
       <button @click="onReset" v-if="responseTime">다시하기</button>
     </div>
     <div>
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       responseTime: [],
+      latestResponseTime: "",
       setTime: "",
       states: "waiting",
       message: "Click the screen to start",
@@ -50,21 +51,34 @@ export default {
         this.message = "You clicked too early! Try again";
         clearTimeout(timeout);
       } else if (this.states === "now") {
+        // this.statesNow();
+
         endTime = new Date();
         this.responseTime.push(endTime - startTime);
         this.count++;
-        // this.states = "ready";
-        console.log(this.averageTime);
-        // averageTime(() => {
-        //   let sum = 0;
-        //   for (var i = 0; i < this.responseTime.length; i++) {
-        //     sum += this.responseTime[i];
-        //   }
-        //   console.log(this.averageTime);
-        //   this.averageTime = sum / this.responseTime.length;
-        // });
+
+        let sum = 0;
+        for (var i = 0; i < this.responseTime.length; i++) {
+          sum += this.responseTime[i];
+        }
+        this.latestResponseTime = this.responseTime[this.count - 1];
       }
-    }
+    },
+    statesNow() {
+      endTime = new Date();
+      this.responseTime.push(endTime - startTime);
+      this.count++;
+
+      let sum = 0;
+      for (var i = 0; i < this.responseTime.length; i++) {
+        sum += this.responseTime[i];
+      }
+      console.log(this.averageTime);
+      this.averageTime = sum / this.responseTime.length;
+      console.log(this.averageTime);
+      this.states = "ready";
+    },
+    statesWaiting() {}
   }
 };
 </script>
