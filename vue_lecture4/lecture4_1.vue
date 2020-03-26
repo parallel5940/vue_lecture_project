@@ -77,8 +77,7 @@ export default {
       this.averageTime = sum / this.responseTime.length;
       console.log(this.averageTime);
       this.states = "ready";
-    },
-    statesWaiting() {}
+    }
   }
 };
 </script>
